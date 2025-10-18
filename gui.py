@@ -10,7 +10,7 @@ from code_generator import CodeGenerator
 class CompilerGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Mini Compiler 👑")
+        self.root.title("Mini-Compiler by Nur Habibah Binti Mahbub")
         self.root.geometry("1200x800")
         self._build_ui()
 
@@ -18,14 +18,14 @@ class CompilerGUI:
         top = tk.Frame(self.root)
         top.pack(fill='x', padx=8, pady=6)
 
-        title = tk.Label(top, text="👑 Mini Compiler", font=('Helvetica', 16, 'bold'))
+        title = tk.Label(top, text="Mini-Compiler", font=('Helvetica', 16, 'bold'))
         title.pack(side='left')
 
         btn_frame = tk.Frame(top)
         btn_frame.pack(side='right')
 
         tk.Button(btn_frame, text="▶ Compile", command=self.compile_action, bg="#50fa7b").pack(side='left', padx=4)
-        tk.Button(btn_frame, text="🧹 Clear", command=self.clear_all, bg="#ff6b6b").pack(side='left', padx=4)
+        tk.Button(btn_frame, text="🧹 Remove", command=self.clear_all, bg="#ff6b6b").pack(side='left', padx=4)
 
         pane = tk.PanedWindow(self.root, orient='horizontal')
         pane.pack(fill='both', expand=True, padx=8, pady=8)
@@ -133,7 +133,7 @@ class CompilerGUI:
         # --- Error Reporting ---
         all_errs = lex_errors + parse_errors + parser.errors
         if all_errs:
-            messagebox.showwarning("Compilation Completed", f"The compilation process generated {len(all_errs)} error(s).")
+            messagebox.showwarning("Compilation Completed", f"The compilation process has generated {len(all_errs)} error(s).")
         else:
             self.err_area.insert('1.0', "No errors detected. The compilation completed successfully.")
             messagebox.showinfo("Compilation Successful", "The code has compiled successfully without any errors.")
