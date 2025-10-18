@@ -9,7 +9,7 @@ class CodeGenerator:
         self.TMP_REG = "temp"     
 
     def get_reg(self, name):
-        """Return a register for a variable or #literal."""
+        """Return a register for a variable or #constant."""
         if name is None:
             return None
         if isinstance(name, (int, float)):
