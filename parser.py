@@ -167,7 +167,7 @@ class MiniParser:
         if p:
             self.errors.append(f"Syntax error at '{p.value}' (line {p.lineno})")
         else:
-            self.errors.append("Syntax error at EOF")
+            self.errors.append("Syntax error at EOF — likely causes: missing semicolon, missing closing bracket, or missing parenthesis")
 
     # --- Helpers ---
     def _emit_statement(self, stmt):
