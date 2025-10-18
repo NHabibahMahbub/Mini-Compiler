@@ -4,6 +4,19 @@ class SymbolTable:
         self.scope_stack = ['global']  # start with global scope
         self.scope_counter = 0
 
+        
+    def lookup(self, name):
+        for s in reversed(self.scope_stack):
+            key = (name, s)
+            if key in self.table:
+                return self.table[key]
+        return None
+
+    def record_use(self, name, line_no):
+        sym = self.lookup(name)
+        if sym:
+            sym['line_no_use'].append(line_no)
+
     def current_scope(self):
         return self.scope_stack[-1]
 
@@ -42,17 +55,6 @@ class SymbolTable:
         }
         return None
 
-    def lookup(self, name):
-        for s in reversed(self.scope_stack):
-            key = (name, s)
-            if key in self.table:
-                return self.table[key]
-        return None
-
-    def record_use(self, name, line_no):
-        sym = self.lookup(name)
-        if sym:
-            sym['line_no_use'].append(line_no)
 
     def get_all(self):
         return list(self.table.values())
