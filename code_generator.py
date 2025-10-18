@@ -6,7 +6,7 @@ class CodeGenerator:
         self.regmap = {}         # variable -> register
         self.regcount = 0
         self.max_regs = 8
-        self.TMP_REG = "R0"      # temp register for immediates
+        self.TMP_REG = "temp"     
 
     def get_reg(self, name):
         """Return a register for a variable or #literal."""
