@@ -19,12 +19,27 @@ class SymbolTable:
             return self.scope_stack.pop()
         return None
 
-    def add_symbol(self, name, typ):
+    def add_symbol(self, name, typ, size=None, size_var=None):
+        """
+        Add a symbol to the table.
+        - name: variable/array name
+        - typ: type (int, float, etc.)
+        - size: for constant-size arrays (int)
+        - size_var: for variable-size arrays (string identifier)
+        """
         key = (name, self.current_scope())
         if key in self.table:
             return f"Redeclaration error: '{name}' already declared in {self.current_scope()}"
-        self.table[key] = {'name': name, 'type': typ, 'scope': self.current_scope()}
+    
+        self.table[key] = {
+            'name': name,
+            'type': typ,
+            'scope': self.current_scope(),
+            'size': size,       # for constant arrays
+            'size_var': size_var  # for variable arrays
+        }
         return None
+
 
     def lookup(self, name):
         for s in reversed(self.scope_stack):
