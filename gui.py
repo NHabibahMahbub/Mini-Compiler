@@ -133,8 +133,7 @@ class CompilerGUI:
         # --- Error Reporting ---
         all_errs = lex_errors + parse_errors + parser.errors
         if all_errs:
-            self.err_area.insert('1.0', "\n".join(all_errs))
-            messagebox.showwarning("Compilation finished", f"Compilation produced {len(all_errs)} error(s).")
+            messagebox.showwarning("Compilation Completed", f"The compilation process generated {len(all_errs)} error(s).")
         else:
-            self.err_area.insert('1.0', "No errors. Compilation successful! 🎉")
-            messagebox.showinfo("Success", "Compilation successful! Check outputs.")
+            self.err_area.insert('1.0', "No errors detected. The compilation completed successfully.")
+            messagebox.showinfo("Compilation Successful", "The code has compiled successfully without any errors.")
