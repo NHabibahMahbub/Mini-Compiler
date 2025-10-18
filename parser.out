@@ -2,8 +2,37 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    AUTO
+    BREAK
+    CASE
+    CHAR
     COMMA
+    CONST
+    CONTINUE
+    DEFAULT
+    DO
+    DOUBLE
+    ENUM
+    EXTERN
+    FOR
+    GOTO
+    LBRACKET
+    LONG
+    RBRACKET
+    REGISTER
+    RETURN
+    SHORT
+    SIGNED
+    SIZEOF
+    STATIC
     STRING
+    STRUCT
+    SWITCH
+    TYPEDEF
+    UNION
+    UNSIGNED
+    VOID
+    VOLATILE
 
 Grammar
 
@@ -46,18 +75,33 @@ Rule 34    expression -> ID
 Terminals, with rules where they appear
 
 ASSIGN               : 16
+AUTO                 : 
+BREAK                : 
+CASE                 : 
+CHAR                 : 
 COMMA                : 
+CONST                : 
+CONTINUE             : 
+DEFAULT              : 
 DIVIDE               : 24
+DO                   : 
+DOUBLE               : 
 ELSE                 : 19
+ENUM                 : 
 EQ                   : 30
+EXTERN               : 
 FLOAT                : 15
+FOR                  : 
 GE                   : 29
+GOTO                 : 
 GT                   : 28
 ID                   : 13 16 34
 IF                   : 18 19
 INT                  : 14
 LBRACE               : 10
+LBRACKET             : 
 LE                   : 27
+LONG                 : 
 LPAREN               : 17 18 19 20 32
 LT                   : 26
 MINUS                : 22
@@ -67,10 +111,24 @@ NUMBER               : 33
 PLUS                 : 21
 PRINT                : 17
 RBRACE               : 10
+RBRACKET             : 
+REGISTER             : 
+RETURN               : 
 RPAREN               : 17 18 19 20 32
 SEMICOLON            : 4 5 6
+SHORT                : 
+SIGNED               : 
+SIZEOF               : 
+STATIC               : 
 STRING               : 
+STRUCT               : 
+SWITCH               : 
 TIMES                : 23
+TYPEDEF              : 
+UNION                : 
+UNSIGNED             : 
+VOID                 : 
+VOLATILE             : 
 WHILE                : 20
 error                : 
 
