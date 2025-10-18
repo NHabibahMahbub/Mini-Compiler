@@ -73,19 +73,33 @@ class CompilerGUI:
         toks, lex_errors = lexer.tokenize(code)
 
         def token_category(tok):
-            if tok.type in ['INT', 'FLOAT', 'IF', 'ELSE', 'WHILE', 'PRINT']:
+            if tok.type in ['INT', 'FLOAT', 'IF', 'ELSE', 'WHILE', 'PRINT', 
+                'AUTO', 'BREAK', 'CASE', 'CHAR', 'CONST', 'CONTINUE',
+                'DEFAULT', 'DO', 'DOUBLE', 'ENUM', 'EXTERN', 'FOR', 
+                'GOTO', 'LONG', 'REGISTER', 'RETURN', 'SHORT', 'SIGNED',
+                'SIZEOF', 'STATIC', 'STRUCT', 'SWITCH', 'TYPEDEF',
+                'UNION', 'UNSIGNED', 'VOID', 'VOLATILE']:
                 return 'Keyword'
+
             elif tok.type == 'ID':
                 return 'Identifier'
-            elif tok.type in ['NUMBER', 'STRING']:
+            
+            elif tok.type in ['NUMBER']:
+                return 'Constant'
+            
+            elif tok.type in ['STRING']:
                 return 'Literal'
+            
             elif tok.type in ['PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'MOD', 'ASSIGN',
                           'LT', 'LE', 'GT', 'GE', 'EQ', 'NE']:
                 return 'Operator'
-            elif tok.type in ['LPAREN', 'RPAREN']:
+            
+            elif tok.type in ['LBRACE', 'RBRACE', 'LPAREN', 'RPAREN', 'RBRACKET', 'LBRACKET']:
                 return 'Parenthesis'
-            elif tok.type in ['LBRACE', 'RBRACE', 'SEMICOLON', 'COMMA']:
+            
+            elif tok.type in [ 'SEMICOLON', 'COMMA']:
                 return 'Punctuation'
+            
             else:
                 return tok.type
 
