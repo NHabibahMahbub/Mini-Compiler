@@ -1,16 +1,20 @@
-
 class SymbolTable:
     def __init__(self):
         self.table = {}  # (name, scope) -> info
-        self.scope_stack = ['global']
+        self.scope_stack = ['global']  # start with global scope
         self.scope_counter = 0
 
     def current_scope(self):
         return self.scope_stack[-1]
 
     def enter_scope(self):
+        """
+        Enter a new scope:
+        - if nested inside global, it's a local scope
+        """
         self.scope_counter += 1
-        name = f"scope{self.scope_counter}"
+        # label nested blocks as 'local'
+        name = "local" if self.current_scope() == "global" else f"local{self.scope_counter}"
         self.scope_stack.append(name)
         return name
 
@@ -19,13 +23,9 @@ class SymbolTable:
             return self.scope_stack.pop()
         return None
 
-    def add_symbol(self, name, typ, size=None, size_var=None):
+    def add_symbol(self, name, typ, size=None, size_var=None, line_no_def=None):
         """
         Add a symbol to the table.
-        - name: variable/array name
-        - typ: type (int, float, etc.)
-        - size: for constant-size arrays (int)
-        - size_var: for variable-size arrays (string identifier)
         """
         key = (name, self.current_scope())
         if key in self.table:
@@ -35,11 +35,12 @@ class SymbolTable:
             'name': name,
             'type': typ,
             'scope': self.current_scope(),
-            'size': size,       # for constant arrays
-            'size_var': size_var  # for variable arrays
+            'size': size,
+            'size_var': size_var,
+            'line_no_def': line_no_def,
+            'line_no_use': []   # list of lines where used
         }
         return None
-
 
     def lookup(self, name):
         for s in reversed(self.scope_stack):
@@ -47,6 +48,11 @@ class SymbolTable:
             if key in self.table:
                 return self.table[key]
         return None
+
+    def record_use(self, name, line_no):
+        sym = self.lookup(name)
+        if sym:
+            sym['line_no_use'].append(line_no)
 
     def get_all(self):
         return list(self.table.values())
